@@ -3,7 +3,7 @@
 import connectDb from './config/db.js';
 import userRoute from './routes/userRoutes.js'
 import postRoute from './routes/postRoute.js'
-import profileRoute from './routes/postRoute.js'
+import profileRoute from './routes/profileRoutes.js'
 
 
 dotEnv.config()
