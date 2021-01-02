@@ -2,6 +2,7 @@ import Profile from '../models/ProfileModel.js'
 import asyncHandler from 'express-async-handler'
 import normalize from 'normalize-url'
 
+
 //@route Get /api/profile/test
 //@desc Tet route
 //@access public
@@ -163,6 +164,23 @@ const getAllProfile = asyncHandler(async(req,res)=>{
 
 })
 
+//@route GET /api/profile/:slug
+//@desc Get Profile with slug
+//@access public
 
-
-export {testRoute,getCurrentProfile,createProfile,updateProfile,getAllProfile}
+const getProfileWithSlug = asyncHandler(async(req,res)=>{
+    
+    const profile = await Profile.find({slug:req.params.slug}).populate('User',['name','avatar'])
+ 
+    if(profile){
+        res.send(profile)
+    }
+    else{
+        res.status(404)
+        // res.json({message:'No Profile Found'})
+        throw new Error ('Profile Not Found')         
+    }
+ 
+ })
+ 
+export {testRoute,getCurrentProfile,createProfile,updateProfile,getAllProfile,getProfileWithSlug}
