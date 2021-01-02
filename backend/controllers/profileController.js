@@ -116,7 +116,7 @@ const updateProfile = asyncHandler(async(req,res) =>{
         socialFields[key] = normalize(value, { forceHttps: true });
     }
 
-     const profile = await Profile.findOne({user:req.user})
+     const profile = await Profile.findOne({user:req.user._id})
 
      if(profile){
           profile.website = normalize(website, { forceHttps: true })||profile.website
@@ -180,7 +180,74 @@ const getProfileWithSlug = asyncHandler(async(req,res)=>{
         // res.json({message:'No Profile Found'})
         throw new Error ('Profile Not Found')         
     }
- 
  })
+
+//@route PUT /api/profile/addExperience
+//@desc Update User Profile To Add Experience
+//@access private
+
+const updateProfileToAddExperience = asyncHandler(async(req,res) =>{
+
+   
+     const profile = await Profile.findOne({user:req.user._id})
+
+     if(profile){
+         
+           profile.experience.unshift(req.body)
+        
+          const updateProfile = await profile.save()
+          
+          if(!updateProfile){
+              res.status(404)
+              res.json({message:'Not Found'})
+          }
+          res.send({
+              updateProfile
+          })
+
+        } 
+     else{
+         res.status(404)
+         res.json({
+             message:'No Profile Found'
+         })
+     }
+   
+ })
+
+//@route PUT /api/profile/addEducation
+//@desc Update User Profile To Add Education
+//@access private
+
+const updateProfileToAddEducation = asyncHandler(async(req,res) =>{
+
+   
+    const profile = await Profile.findOne({user:req.user._id})
+
+    if(profile){
+        
+          profile.education.unshift(req.body)
+       
+         const updateProfile = await profile.save()
+         
+         if(!updateProfile){
+             res.status(404)
+             res.json({message:'Not Found'})
+         }
+         res.send({
+             updateProfile
+         })
+
+       } 
+    else{
+        res.status(404)
+        res.json({
+            message:'No Profile Found'
+        })
+    }
+  
+})
+
  
-export {testRoute,getCurrentProfile,createProfile,updateProfile,getAllProfile,getProfileWithSlug}
+export {testRoute,getCurrentProfile,createProfile,updateProfile,getAllProfile,getProfileWithSlug,updateProfileToAddExperience
+,updateProfileToAddEducation}
