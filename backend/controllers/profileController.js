@@ -38,6 +38,7 @@ const getCurrentProfile = asyncHandler(async(req,res) =>{
 const createProfile = asyncHandler(async(req,res) =>{
     const {
         website,
+        slug,
         skills,
         status,
         youtube,
@@ -70,6 +71,7 @@ const createProfile = asyncHandler(async(req,res) =>{
           status,  
           social:socialFields,
           bio,
+          slug,
        ...rest
     });
 
@@ -140,7 +142,27 @@ const updateProfile = asyncHandler(async(req,res) =>{
    
  })
 
+ //@route GET /api/profile/all
+//@desc Get All profile
+//@access public
+
+const getAllProfile = asyncHandler(async(req,res)=>{
+    
+   const profile = await Profile.find({}).populate('User',['name','avatar'])
+
+   if(profile){
+       res.send(profile)
+   }
+   else{
+       res.status(404)
+        res.json({
+            message:'Profile Not Found'
+        })          
+   }
+
+
+})
 
 
 
-export {testRoute,getCurrentProfile,createProfile,updateProfile}
+export {testRoute,getCurrentProfile,createProfile,updateProfile,getAllProfile}

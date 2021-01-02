@@ -8,6 +8,10 @@ const ProfileSchema =  mongoose.Schema({
   company: {
     type: String
   },
+  slug:{
+    type:String,
+    required:true
+  },
   website: {
     type: String
   },
