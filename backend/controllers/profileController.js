@@ -215,7 +215,7 @@ const updateProfileToAddExperience = asyncHandler(async(req,res) =>{
    
  })
 
-//@route PUT /api/profile/addEducation
+ //@route PUT /api/profile/addEducation
 //@desc Update User Profile To Add Education
 //@access private
 
@@ -248,6 +248,60 @@ const updateProfileToAddEducation = asyncHandler(async(req,res) =>{
   
 })
 
+
+
+//@route DELETE /api/profile/:exp_id/delete
+//@desc  Delete exp from user profile
+//@access private
+
+const deleteExperience = asyncHandler(async(req,res) =>{
+
+   
+    const foundProfile = await Profile.findOne({user:req.user._id})
+
+    if(foundProfile){
+        
+          foundProfile.experience = foundProfile.experience.filter(exp => exp._id.toString() !== req.params.exp_id)
+       
+         const updateProfile = await foundProfile.save()
+           res.send(updateProfile)
+
+       } 
+    else{
+        res.status(404)
+        res.json({
+            message:'No Profile Found'
+        })
+    }
+  
+})
+
+
+//@route DELETE /api/profile/:exp_id/delete
+//@desc  Delete exp from user profile
+//@access private
+
+const deleteEducation = asyncHandler(async(req,res) =>{
+
+   
+    const foundProfile = await Profile.findOne({user:req.user._id})
+
+    if(foundProfile){
+        
+          foundProfile.education = foundProfile.education.filter(edu => edu._id.toString() !== req.params.edu_id)
+       
+         const updateProfile = await foundProfile.save()
+           res.send(updateProfile)
+
+       } 
+    else{
+        res.status(404)
+        res.json({
+            message:'No Profile Found'
+        })
+    }
+  
+})
  
 export {testRoute,getCurrentProfile,createProfile,updateProfile,getAllProfile,getProfileWithSlug,updateProfileToAddExperience
-,updateProfileToAddEducation}
+,updateProfileToAddEducation,deleteExperience,deleteEducation}
