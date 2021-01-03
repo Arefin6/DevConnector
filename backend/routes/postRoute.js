@@ -1,13 +1,16 @@
 import express from 'express'
+import { createPost, deletePost, getPosts, getSinglePost, testRoute } from '../controllers/postController.js';
+import { protect } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-//@route Get /api/posts/Test
-//@desc Tet route
-//@access public
-router.get('/test',(req,res) =>{
-    res.send({message:'postRoute Works'})
-})
+router.get('/test',testRoute)
+router.route('/:id')
+.get(getSinglePost)
+.delete(protect,deletePost)
+router.route('/')
+.get(getPosts)
+.post(protect,createPost)
 
 
 export default router
