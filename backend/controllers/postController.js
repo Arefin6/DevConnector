@@ -147,8 +147,77 @@ const unlikePost = asyncHandler(async(req,res)=>{
     
   
   })
+ 
 
+  //@route Put /api/posts/comment/:Id
+//@desc Comment on a Post
+//@access private
 
+const addComment = asyncHandler(async(req,res)=>{
+             
+    const post = await Post.findById(req.params.id)
 
+      if(!post){
+         const error = "No Post Found"  
+        return res.status(404).json(error)
+         
+      }
+      //check Already liked or not
+      const newComment ={
+          user:req.user.id,
+          name:req.user.name,
+          avatar:req.user.avatar,
+          text:req.body.text
+      } 
+    
+     post.comments.unshift(newComment) 
 
-export {testRoute,createPost,getPosts,getSinglePost,deletePost,likePost,unlikePost}
+     await post.save()
+
+     res.send(post)
+  
+  })
+
+ 
+
+ //@route Delete /api/posts/comment/:Id/:commentId
+//@desc Delete Comment on a Post
+//@access private
+
+const deleteComment = asyncHandler(async(req,res)=>{
+             
+    const post = await Post.findById(req.params.id)
+
+      if(!post){
+         const error = "No Post Found"  
+        return res.status(404).json(error)
+         
+      }
+
+   
+     //check the comment is  exits or not
+    
+     const comment = post.comments.find(comment => comment.id === req.params.commentId)
+
+     if(!comment){
+         return res.status(404).json({commentNotFound:'Comment Not Found'})
+     }
+
+     //check User
+
+     if(comment.user.toString() !== req.user.id){
+        return res.status(401).json({AuthError:"Un Authorized Access"})
+     }
+    
+     post.comments = post.comments.filter(comment => comment.id !== req.params.commentId )
+    
+     await post.save()
+     
+     res.send(post)
+
+  
+  })
+
+export {testRoute,createPost,getPosts,getSinglePost,
+    deletePost,likePost,unlikePost
+,addComment,deleteComment}
