@@ -90,4 +90,65 @@ const deletePost = asyncHandler(async(req,res)=>{
   })
 
 
-export {testRoute,createPost,getPosts,getSinglePost,deletePost}
+
+   
+//@route Put /api/posts/like/:Id
+//@desc Like a Post
+//@access private
+
+const likePost = asyncHandler(async(req,res)=>{
+             
+    const post = await Post.findById(req.params.id)
+
+      if(!post){
+         const error = "No Post Found"  
+        return res.status(404).json(error)
+         
+      }
+      //check Already liked or not
+      if(post.likes.find(like => like.user.toString() === req.user.id )){
+           res.status(400).json({alreadyLiked:"You Already Liked the post"})   
+      }
+      else{
+          post.likes.unshift({user:req.user.id})
+
+          await post.save()
+
+          res.send(post) 
+      }
+    
+  
+  })
+
+  //@route Put /api/posts/unlike/:Id
+//@desc unLike a Post
+//@access private
+
+const unlikePost = asyncHandler(async(req,res)=>{
+             
+    const post = await Post.findById(req.params.id)
+
+      if(!post){
+         const error = "No Post Found"  
+        return res.status(404).json(error)
+         
+      }
+      //check Already liked or not
+      if(!post.likes.find(like => like.user.toString() === req.user.id )){
+           res.status(400).json({NotLiked:"You Have not Liked the post"})   
+      }
+      else{
+          post.likes = post.likes.filter(like => like.user.toString() !== req.user.id)
+          
+          await post.save()
+
+          res.send(post) 
+      }
+    
+  
+  })
+
+
+
+
+export {testRoute,createPost,getPosts,getSinglePost,deletePost,likePost,unlikePost}
