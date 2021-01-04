@@ -1,40 +1,30 @@
 import React from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 const Header = () => {
     return (
-    <header>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-    <div class="container">
-      <a class="navbar-brand" href="landing.html">DevConnector</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <header style={{fontFamily:"'Open Sans', sans-serif"}}>
+          <Navbar bg='dark' className="text-white" variant='dark'>
+              <Container>
+              <Navbar.Brand href='/'>DevConnector</Navbar.Brand>
 
-      <div class="collapse navbar-collapse" id="mobile-nav">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="profiles.html"> Developers
-            </a>
-          </li>
-        </ul>
+              <Nav className="mr-auto">
+                  
+              <Nav.Link  href="/profiles">Developers</Nav.Link>
+              
+              </Nav>
+              <Nav className="ml-auto">
+              
+              <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link href="/register">SignUp</Nav.Link>
 
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="feed.html">
-              Post Feed
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="dashboard.html">
-              Dashboard
-            </a>
-          </li>
-        
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+              </Nav> 
+
+              </Container>
+             
+         </Navbar>  
+            
+        </header>
     );
 };
 

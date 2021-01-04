@@ -4,10 +4,10 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import {Container} from 'react-bootstrap';
 import './App.css';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
+import HomeScreen from './screens/HomeScreen/HomeScreen';
 
 function App() {
   return (
@@ -15,14 +15,11 @@ function App() {
      <Header></Header>
      <main className="py-3">
          
-     <Container>
          <Switch>
-           <Route>
-
+           <Route path="/" exact>
+            <HomeScreen></HomeScreen>
            </Route>
          </Switch>
-
-      </Container> 
        
        </main> 
        <Footer></Footer>
