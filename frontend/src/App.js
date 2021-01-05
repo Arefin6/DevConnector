@@ -9,6 +9,7 @@ import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
            </Route>
            <Route path="/login" exact>
             <LoginScreen></LoginScreen>
+           </Route>
+           <Route path="/register" exact>
+             <RegisterScreen></RegisterScreen>
            </Route>
            <Route path="*" exact>
             <h2>Not Found</h2>

@@ -12,7 +12,7 @@ const HomeScreen = () => {
             </h1>
             <p className="lead"> Create a developer profile/portfolio, share posts and get help from other developers</p>
 
-            <a href="'/register" className="btn btn-lg text-white btn-info mx-3">Sign Up</a>
+            <a href="/register" className="btn btn-lg text-white btn-info mx-3">Sign Up</a>
             <a href="/login" className="btn btn-lg btn-light">Login</a>
           </div>
         </div>
