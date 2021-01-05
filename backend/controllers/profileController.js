@@ -149,10 +149,10 @@ const updateProfile = asyncHandler(async(req,res) =>{
 
 const getAllProfile = asyncHandler(async(req,res)=>{
     
-   const profile = await Profile.find({}).populate('User',['name','avatar'])
+    const profiles = await Profile.find({}).populate('user', 'name avatar')
 
-   if(profile){
-       res.send(profile)
+   if(profiles){
+       res.send(profiles)
    }
    else{
        res.status(404)
@@ -170,7 +170,7 @@ const getAllProfile = asyncHandler(async(req,res)=>{
 
 const getProfileWithSlug = asyncHandler(async(req,res)=>{
     
-    const profile = await Profile.find({slug:req.params.slug}).populate('User',['name','avatar'])
+    const profile = await Profile.find({slug:req.params.slug}).populate('user','name avatar')
  
     if(profile){
         res.send(profile)

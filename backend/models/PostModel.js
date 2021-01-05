@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const postSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'User'
       },
     text: {
         type:String,
@@ -20,7 +20,7 @@ const postSchema = mongoose.Schema({
         {
             user: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'users'
+                ref: 'User'
               }   
         }
     ],
@@ -28,7 +28,7 @@ const postSchema = mongoose.Schema({
         {
             user: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'users'
+                ref: 'User'
               },
              text:{ 
               type:String,

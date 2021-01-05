@@ -1,9 +1,10 @@
 import {createStore,combineReducers,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import { profilesReducer } from './reducers/profileReducer';
 
 const reducer = combineReducers({
-
+   profilesAll:profilesReducer,
 })
 
 
