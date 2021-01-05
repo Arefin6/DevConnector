@@ -9,6 +9,7 @@ import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
+import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
            </Route>
            <Route path="/login" exact>
             <LoginScreen></LoginScreen>
+           </Route>
+           <Route path="/profiles" exact>
+             <ProfileScreen></ProfileScreen>
            </Route>
            <Route path="/register" exact>
              <RegisterScreen></RegisterScreen>
