@@ -170,15 +170,15 @@ const getAllProfile = asyncHandler(async(req,res)=>{
 
 const getProfileWithSlug = asyncHandler(async(req,res)=>{
     
-    const profile = await Profile.find({slug:req.params.slug}).populate('user','name avatar')
+    const profile = await Profile.findOne({slug:req.params.slug}).populate('user','name avatar')
  
     if(profile){
         res.send(profile)
     }
     else{
         res.status(404)
-        // res.json({message:'No Profile Found'})
-        throw new Error ('Profile Not Found')         
+         res.json({message:'No Profile Found'})
+                 
     }
  })
 

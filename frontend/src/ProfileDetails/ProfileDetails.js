@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProfileDetails = ({profile}) => {
     return (
@@ -12,7 +13,7 @@ const ProfileDetails = ({profile}) => {
                         <h3>{profile.user.name}</h3>
                         <p>{profile.status}</p>
                         <p>{profile.location}</p>
-                        <a href="profile.html" className="btn text-white btn-info">View Profile</a>
+                        <Link to={`/profile/${profile.slug}`} className="btn text-white btn-info">View Profile</Link>
                     </div>
                     <div className="col-md-4 d-none d-lg-block">
                         <h4>Skill Set</h4>

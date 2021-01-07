@@ -11,6 +11,7 @@ import HomeScreen from './screens/HomeScreen/HomeScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
+import SingleProfileScreen from './screens/SingleProfileScreen/SingleProfileScreen';
 
 function App() {
   return (
@@ -22,16 +23,19 @@ function App() {
            <Route path="/" exact>
             <HomeScreen></HomeScreen>
            </Route>
-           <Route path="/login" exact>
+           <Route path="/login" >
             <LoginScreen></LoginScreen>
            </Route>
-           <Route path="/profiles" exact>
+           <Route path="/profiles">
              <ProfileScreen></ProfileScreen>
            </Route>
-           <Route path="/register" exact>
+           <Route   path="/profile/:slug" exact>
+             <SingleProfileScreen></SingleProfileScreen>
+           </Route>
+           <Route path="/register">
              <RegisterScreen></RegisterScreen>
            </Route>
-           <Route path="*" exact>
+           <Route path="*">
             <h2>Not Found</h2>
            </Route>
          </Switch>
