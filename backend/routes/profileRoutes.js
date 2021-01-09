@@ -1,16 +1,16 @@
 import express from 'express'
-import { createProfile, getAllProfile, getCurrentProfile,
-     getProfileWithSlug, testRoute, updateProfile,
+import { createProfile, getAllProfile, getCurrentProfile, testRoute, updateProfile,
       updateProfileToAddEducation, updateProfileToAddExperience
     ,deleteExperience, 
-    deleteEducation} from '../controllers/profileController.js';
+    deleteEducation,
+    getProfileByUserId} from '../controllers/profileController.js';
 import  {protect} from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
 router.get('/test',testRoute)
 router.get('/all',getAllProfile)
-router.get('/:slug',getProfileWithSlug)
+router.get('/:userId',getProfileByUserId)
 router.put('/addExperience',protect,updateProfileToAddExperience)
 router.put('/addEducation',protect,updateProfileToAddEducation)
 router.delete('/:exp_id/delete',protect,deleteExperience)

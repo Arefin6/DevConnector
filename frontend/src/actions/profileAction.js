@@ -4,8 +4,8 @@ import {
     PROFILE_SUCCESS,
     PROFILE_FAIL,
     PROFILE_DETAILS_REQUEST,
-    PROFILE_DETAILS_FAIL,
-    PROFILE_DETAILS_SUCCESS
+    PROFILE_DETAILS_SUCCESS,
+    PROFILE_DETAILS_FAIL
 } from '../constants/profileConstants';
 
 export const allProfiles = () => async(dispatch)=>{
@@ -30,12 +30,12 @@ export const allProfiles = () => async(dispatch)=>{
 }
 
 
-export const profileDetailsAction = (slug) =>async(dispatch)=>{
+export const profileDetailsAction = (id) =>async(dispatch)=>{
     try {
          
         dispatch({type: PROFILE_DETAILS_REQUEST})
 
-        const {data} = await axios.get(`/api/profile/${slug}`)
+        const {data} = await axios.get(`/api/profile/${id}`)
        
          dispatch({
              type:PROFILE_DETAILS_SUCCESS,

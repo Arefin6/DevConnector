@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomeScreen = () => {
     return (
-    <>
+  <>
   <div className="landing">
     <div className="dark-overlay landing-inner text-light">
       <div className="container">

@@ -1,3 +1,4 @@
+  
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -5,39 +6,30 @@ import {
   Route
 } from "react-router-dom";
 import './App.css';
-import Footer from './Footer/Footer';
-import Header from './Header/Header';
-import HomeScreen from './screens/HomeScreen/HomeScreen';
-import LoginScreen from './screens/LoginScreen/LoginScreen';
-import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
-import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
-import SingleProfileScreen from './screens/SingleProfileScreen/SingleProfileScreen';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import DetailsScreen from './components/screens/DetailsScreen';
+import HomeScreen from './components/screens/HomeScreen';
+import ProfileScreen from './components/screens/ProfileScreen';
+
 
 function App() {
   return (
     <Router>
-     <Header></Header>
+      <Header></Header>
      <main className="py-3">
          
          <Switch>
-           <Route path="/" exact>
+         <Route path="/" exact>
             <HomeScreen></HomeScreen>
            </Route>
-           <Route path="/login" >
-            <LoginScreen></LoginScreen>
+           <Route path="/profiles" >
+            <ProfileScreen></ProfileScreen>
            </Route>
-           <Route path="/profiles">
-             <ProfileScreen></ProfileScreen>
+           <Route path="/profile/:id" >
+            <DetailsScreen></DetailsScreen>
            </Route>
-           <Route   path="/profile/:slug" exact>
-             <SingleProfileScreen></SingleProfileScreen>
-           </Route>
-           <Route path="/register">
-             <RegisterScreen></RegisterScreen>
-           </Route>
-           <Route path="*">
-            <h2>Not Found</h2>
-           </Route>
+        
          </Switch>
        
        </main> 

@@ -168,17 +168,18 @@ const getAllProfile = asyncHandler(async(req,res)=>{
 //@desc Get Profile with slug
 //@access public
 
-const getProfileWithSlug = asyncHandler(async(req,res)=>{
+const getProfileByUserId = asyncHandler(async(req,res)=>{
     
-    const profile = await Profile.findOne({slug:req.params.slug}).populate('user','name avatar')
+    const profile = await Profile.findOne({user:req.params.userId}).populate('user','name avatar')
  
-    if(profile){
-        res.send(profile)
+    if(!profile){
+        res.status(404)
+        res.json({message:'No Profile Found'})
+      
     }
     else{
-        res.status(404)
-         res.json({message:'No Profile Found'})
-                 
+       
+        res.send(profile)          
     }
  })
 
@@ -303,5 +304,5 @@ const deleteEducation = asyncHandler(async(req,res) =>{
   
 })
  
-export {testRoute,getCurrentProfile,createProfile,updateProfile,getAllProfile,getProfileWithSlug,updateProfileToAddExperience
+export {testRoute,getCurrentProfile,createProfile,updateProfile,getAllProfile,getProfileByUserId,updateProfileToAddExperience
 ,updateProfileToAddEducation,deleteExperience,deleteEducation}

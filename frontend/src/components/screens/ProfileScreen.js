@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import {useDispatch,useSelector} from 'react-redux';
 import { allProfiles } from '../../actions/profileAction';
-import ProfileDetails from '../../ProfileDetails/ProfileDetails';
-import Loader from '../../Loader/Loader';
-import Message from '../../Message/Message'
+import ProfileDetails from '../profileDetails';
+import Message from '../Message';
+import Loader from '../Loader';
+
+
 
 const ProfileScreen = () => {
 

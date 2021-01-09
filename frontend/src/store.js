@@ -1,11 +1,12 @@
 import {createStore,combineReducers,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import { profileSingleReducer, profilesReducer } from './reducers/profileReducer';
+import { profileDetailsReducer, profilesReducer } from './reducers/profileReducer';
+
 
 const reducer = combineReducers({
-   profilesAll:profilesReducer,
-   profileDetails:profileSingleReducer
+    profilesAll:profilesReducer,
+    profileDetails:profileDetailsReducer,
 })
 
 
@@ -23,4 +24,4 @@ const store = createStore(
     
 )
 
-export default store
+export default store;

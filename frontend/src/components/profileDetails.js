@@ -13,7 +13,7 @@ const ProfileDetails = ({profile}) => {
                         <h3>{profile.user.name}</h3>
                         <p>{profile.status}</p>
                         <p>{profile.location}</p>
-                        <Link to={`/profile/${profile.slug}`} className="btn text-white btn-info">View Profile</Link>
+                        <Link to={`/profile/${profile.user._id}`} className="btn text-white btn-info">View Profile</Link>
                     </div>
                     <div className="col-md-4 d-none d-lg-block">
                         <h4>Skill Set</h4>
