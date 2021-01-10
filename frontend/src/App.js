@@ -26,7 +26,7 @@ function App() {
            <Route path="/profiles" >
             <ProfileScreen></ProfileScreen>
            </Route>
-           <Route path="/profile/:id" >
+           <Route path="/profile/:userid" exact >
             <DetailsScreen></DetailsScreen>
            </Route>
         
