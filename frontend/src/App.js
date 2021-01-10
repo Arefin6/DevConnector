@@ -10,7 +10,9 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import DetailsScreen from './components/screens/DetailsScreen';
 import HomeScreen from './components/screens/HomeScreen';
+import Login from './components/screens/Login';
 import ProfileScreen from './components/screens/ProfileScreen';
+import Register from './components/screens/Register';
 
 
 function App() {
@@ -28,6 +30,12 @@ function App() {
            </Route>
            <Route path="/profile/:userid" exact >
             <DetailsScreen></DetailsScreen>
+           </Route>
+           <Route path="/login" >
+            <Login></Login>
+           </Route>
+           <Route path="/register" >
+            <Register></Register>
            </Route>
         
          </Switch>
