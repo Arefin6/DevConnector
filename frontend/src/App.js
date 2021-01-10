@@ -8,6 +8,7 @@ import {
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import DashboardScreen from './components/screens/DashboardScreen';
 import DetailsScreen from './components/screens/DetailsScreen';
 import HomeScreen from './components/screens/HomeScreen';
 import Login from './components/screens/Login';
@@ -36,6 +37,9 @@ function App() {
            </Route>
            <Route path="/register" >
             <Register></Register>
+           </Route>
+           <Route path="/dashboard" >
+            <DashboardScreen></DashboardScreen>
            </Route>
         
          </Switch>

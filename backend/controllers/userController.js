@@ -58,7 +58,7 @@ const registerUser = asyncHandler(async (req,res) =>{
 })
 
 
-//@route Post /api/user/login
+//@route Post /api/users/login
 //@desc Login User
 //@access public
 
