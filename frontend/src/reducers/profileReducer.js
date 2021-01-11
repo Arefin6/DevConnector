@@ -5,6 +5,9 @@ import {
     PROFILE_DETAILS_REQUEST,
     PROFILE_DETAILS_SUCCESS,
     PROFILE_DETAILS_FAIL,
+    PROFILE_CURRENT_FAIL,
+    PROFILE_CURRENT_SUCCESS,
+    PROFILE_CURRENT_REQUEST,
 } from '../constants/profileConstants';
 
 export const profilesReducer = (state = {profiles:[]},action)=>{
@@ -45,6 +48,29 @@ export const profileDetailsReducer = (state = {portfolio:{user:{},skills:[],soci
              portfolio:action.payload
          } 
       case PROFILE_DETAILS_FAIL:
+         return{
+             loading:false,
+             error:action.payload
+         } 
+       default:
+         return state           
+  }
+}
+
+export const profileCurrentReducer = (state = {profile:{user:{},skills:[],social:{},education:[],experience:[]}},action)=>{
+  
+  switch(action.type){
+      case PROFILE_CURRENT_REQUEST:
+        return{
+            loading:true,
+            ...state
+        }
+      case PROFILE_CURRENT_SUCCESS:
+         return{
+             loading:false,
+             profile:action.payload
+         } 
+      case PROFILE_CURRENT_FAIL:
          return{
              loading:false,
              error:action.payload

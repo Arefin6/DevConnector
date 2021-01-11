@@ -5,7 +5,10 @@ import {
     PROFILE_FAIL,
     PROFILE_DETAILS_REQUEST,
     PROFILE_DETAILS_SUCCESS,
-    PROFILE_DETAILS_FAIL
+    PROFILE_DETAILS_FAIL,
+    PROFILE_CURRENT_FAIL,
+    PROFILE_CURRENT_REQUEST,
+    PROFILE_CURRENT_SUCCESS
 } from '../constants/profileConstants';
 
 export const allProfiles = () => async(dispatch)=>{
@@ -45,6 +48,38 @@ export const profileDetailsAction = (id) =>async(dispatch)=>{
         
         dispatch({
             type:PROFILE_DETAILS_FAIL,
+            payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })   
+    }   
+   } 
+
+   export const currentProfile = () =>async(dispatch,getState)=>{
+    try {
+         
+        dispatch({type: PROFILE_CURRENT_REQUEST})
+
+        const {userLogin:{userInfo}}=getState()
+        
+        const config = {
+            headers:{
+                'Content-type':'application/json',
+                 Authorization:`Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.get(`/api/profile`,config)
+       
+         dispatch({
+             type:PROFILE_CURRENT_SUCCESS,
+             payload:data
+         })
+       } catch (error) {
+        
+        dispatch({
+            type:PROFILE_CURRENT_FAIL,
             payload:
             error.response && error.response.data.message
               ? error.response.data.message
