@@ -8,6 +8,7 @@ import {
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import CreateProfileScreen from './components/screens/CreateProfileScreen';
 import DashboardScreen from './components/screens/DashboardScreen';
 import DetailsScreen from './components/screens/DetailsScreen';
 import HomeScreen from './components/screens/HomeScreen';
@@ -40,6 +41,9 @@ function App() {
            </Route>
            <Route path="/dashboard" >
             <DashboardScreen></DashboardScreen>
+           </Route>
+           <Route path="/createProfile" >
+            <CreateProfileScreen></CreateProfileScreen>
            </Route>
         
          </Switch>
