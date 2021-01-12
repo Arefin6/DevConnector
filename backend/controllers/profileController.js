@@ -39,27 +39,25 @@ const getCurrentProfile = asyncHandler(async(req,res) =>{
 const createProfile = asyncHandler(async(req,res) =>{
     const {
         website,
-        slug,
         skills,
-        status,
         youtube,
         twitter,
         instagram,
         linkedin,
         facebook,
-        bio,
         // spread the rest of the fields we don't need to check
         ...rest
       } = req.body;
 
-      const socialFields = { youtube, twitter, instagram, linkedin, facebook };
+      const socialFields = {  twitter,facebook,linkedin,youtube,instagram };
 
     // normalize social fields to ensure valid url
     for (const [key, value] of Object.entries(socialFields)) {
       if (value && value.length > 0)
         socialFields[key] = normalize(value, { forceHttps: true });
     }
-
+     
+    
     const createdProfile = await Profile.create({
         user:req.user._id,
         website:
@@ -68,12 +66,9 @@ const createProfile = asyncHandler(async(req,res) =>{
           : '',
           skills: Array.isArray(skills)
           ? skills
-          : skills.split(',').map((skill) => ' ' + skill.trim()),
-          status,  
+          : skills.split(',').map((skill) => ' ' + skill.trim()),  
           social:socialFields,
-          bio,
-          slug,
-       ...rest
+         ...rest
     });
 
     if(createdProfile){

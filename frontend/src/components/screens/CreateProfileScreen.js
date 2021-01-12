@@ -1,40 +1,85 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import { createProfileAction } from '../../actions/profileAction';
 
 const CreateProfileScreen = () => {
-  
+
+    const initialState = {
+        company: '',
+        website: '',
+        location: '',
+        status: '',
+        skills: '',
+        github: '',
+        bio: '',
+        twitter: '',
+        facebook: '',
+        linkedin: '',
+        youtube: '',
+        instagram: ''
+      };
+
+
     const history = useHistory()
     const dispatch =  useDispatch()
 
-    const [displaySocial,setDisplaySocial] = useState(true)
-    const [status,setStatus] = useState("")
-    const [website,setWebsite] = useState("")
-    const [location,setLocation] = useState("")
-    const [company,setCompany] = useState("")
-    const [github,setGithub] = useState("")
-    const [skills,setSkills] = useState([])
-    const [bio,setBio] = useState("")
-    const [twitter,setTwitter] = useState("")
-    const [facebook,setFacebook] = useState("")
-    const [Linkdin,setLinkdin] = useState("")
-    const [instagram,setInstagram] = useState("")
-    const [youtube,setYoutube] = useState("")
+
+
+ 
+    const [formData,setFromData] = useState(initialState)
+    const [displaySocial,setDisplaySocial] = useState(false)
 
 
 
     const userLoggedIn = useSelector(state =>state.userLogin)
     const {userInfo} = userLoggedIn 
-     
+
+    const profileCreate = useSelector(state =>state.profileCreate)
+    const {success} = profileCreate 
+
+
+    const {
+        company,
+        website,
+        location,
+        status,
+        skills,
+        github,
+        bio,
+        twitter,
+        facebook,
+        linkedin,
+        youtube,
+        instagram
+      } = formData;
+
+
+    const handleOnChange = (e) =>{
+      setFromData({...formData,[e.target.name]:e.target.value})
+    }
+
+    
      const displaySocialLinks = () =>{
 
          setDisplaySocial(!displaySocial)
       
      }
+
     
      const handleSubmit = (e)=>{
          e.preventDefault()
-     } 
+         dispatch(createProfileAction(formData))
+        
+          
+     }
+     
+     useEffect(()=>{
+         if(success){
+             history.push('/dashboard')
+         }
+
+     },[history,success])
 
      if(!userInfo){
          history.push('/login')
@@ -57,7 +102,7 @@ const CreateProfileScreen = () => {
                         <div className="form-group">
                         <select className="form-control form-control-lg" name="status"
                          value={status}
-                         onChange={ (e) => setStatus(e.target.value)}
+                         onChange={handleOnChange}
                         >
                             <option value="0">* Select Professional Status</option>
                             <option value="Developer">Developer</option>
@@ -74,42 +119,43 @@ const CreateProfileScreen = () => {
                         <div className="form-group">
                         <input type="text"
                             value={company}
-                            onChange={ (e) => setCompany(e.target.value)}
+                            onChange={ handleOnChange}
                         className="form-control form-control-lg" placeholder="Company" name="company" />
                         <small className="form-text text-muted">Could be your own company or one you work for</small>
                         </div>
                         <div className="form-group">
                         <input type="text"
                            value={website}
-                           onChange={ (e) => setWebsite(e.target.value)}
+                           onChange={ handleOnChange}
                         className="form-control form-control-lg" placeholder="Website" name="website" />
                         <small className="form-text text-muted">Could be your own or a company website</small>
                         </div>
                         <div className="form-group">
                         <input type="text" 
                            value={location}
-                           onChange={ (e) => setLocation(e.target.value)}
+                           onChange={handleOnChange}
                         className="form-control form-control-lg" placeholder="Location" name="location" />
                         <small className="form-text text-muted">City & state suggested (eg. Boston, MA)</small>
                         </div>
                         <div className="form-group">
                         <input type="text"
+                              name="skills" 
                             value={skills}
-                            onChange={ (e) => setSkills(e.target.value)}
-                        className="form-control form-control-lg" placeholder="Skills" name="skills" />
+                            onChange={handleOnChange}
+                        className="form-control form-control-lg" placeholder="Skills"/>
                         <small className="form-text text-muted">Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)</small>
                         </div>
                         <div className="form-group">
                         <input type="text"
                            value={github}
-                           onChange={ (e) => setGithub(e.target.value)}
-                        className="form-control form-control-lg" placeholder="Github Username" name="githubusername" />
+                           onChange={handleOnChange}
+                        className="form-control form-control-lg" placeholder="Github Username" name="github" />
                         <small className="form-text text-muted">If you want your latest repos and a Github link, include your username</small>
                         </div>
                         <div className="form-group">
                         <textarea className="form-control form-control-lg" 
                             value={bio}
-                            onChange={ (e) => setBio(e.target.value)}
+                            onChange={handleOnChange}
                         placeholder="A short bio of yourself" name="bio"></textarea>
                         <small className="form-text text-muted">Tell us a little about yourself</small>
                         </div>
@@ -128,7 +174,7 @@ const CreateProfileScreen = () => {
                         </div>
                         <input type="text" 
                            value={twitter}
-                           onChange={ (e) => setTwitter(e.target.value)}
+                           onChange={handleOnChange}
                         className="form-control form-control-lg" placeholder="Twitter Profile URL" name="twitter" />
                         </div>
 
@@ -140,7 +186,7 @@ const CreateProfileScreen = () => {
                         </div>
                         <input type="text"
                            value={facebook}
-                           onChange={ (e) => setFacebook(e.target.value)}
+                           onChange={handleOnChange}
                         className="form-control form-control-lg" placeholder="Facebook Page URL" name="facebook" />
                         </div>
 
@@ -151,8 +197,8 @@ const CreateProfileScreen = () => {
                             </span>
                         </div>
                         <input type="text"
-                           value={Linkdin}
-                           onChange={ (e) => setLinkdin(e.target.value)}
+                           value={linkedin}
+                           onChange={ handleOnChange}
                         className="form-control form-control-lg" placeholder="Linkedin Profile URL" name="linkedin" />
                         </div>
 
@@ -164,7 +210,7 @@ const CreateProfileScreen = () => {
                         </div>
                         <input type="text"
                            value={youtube}
-                           onChange={ (e) => setYoutube(e.target.value)}
+                           onChange={handleOnChange}
                         className="form-control form-control-lg" placeholder="YouTube Channel URL" name="youtube" />
                         </div>
 
@@ -176,7 +222,7 @@ const CreateProfileScreen = () => {
                         </div>
                         <input type="text" 
                            value={instagram}
-                           onChange={ (e) => setInstagram(e.target.value)}
+                           onChange={handleOnChange}
                         className="form-control form-control-lg" placeholder="Instagram Page URL" name="instagram" />
                         </div>
                         </>

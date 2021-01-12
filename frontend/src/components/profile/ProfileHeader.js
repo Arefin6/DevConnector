@@ -24,7 +24,7 @@ const ProfileHeader = ({portfolio}) => {
                 <a className="text-white p-2" rel="noopener noreferrer" target="_blank" href={portfolio.social.facebook ? portfolio.social.facebook:'#'}>
                   <i className="fab fa-facebook fa-2x"></i>
                 </a>
-                <a className="text-white p-2" rel="noopener noreferrer" target="_blank" href={portfolio.social.likendin ? portfolio.likendin:'#'}>
+                <a className="text-white p-2" rel="noopener noreferrer" target="_blank" href={portfolio.social.linkedin ? portfolio.social.linkedin:'#'}>
                   <i className="fab fa-linkedin fa-2x"></i>
                 </a>
                 <a className="text-white p-2"  rel="noopener noreferrer"target="_blank" href={portfolio.social.instagram ? portfolio.social.instagram:'#'}>
