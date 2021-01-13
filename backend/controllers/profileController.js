@@ -95,7 +95,7 @@ const updateProfile = asyncHandler(async(req,res) =>{
         status,
         skills,
         bio,
-        github,
+        githubUsername,
         youtube,
         twitter,
         instagram,
@@ -125,7 +125,7 @@ const updateProfile = asyncHandler(async(req,res) =>{
           profile.location = location||profile.location
           profile.status = status||profile.status
           profile.bio = bio||profile.bio
-          profile.github = github||profile.github
+          profile.githubUsername = githubUsername||profile.githubUsername
 
           const updateProfile = await profile.save()
 

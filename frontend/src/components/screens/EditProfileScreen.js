@@ -26,7 +26,7 @@ const EditProfileScreen = () => {
         location: '',
         status: '',
         skills: '',
-        github: '',
+        githubUsername: '',
         bio: '',
         twitter: '',
         facebook: '',
@@ -45,7 +45,7 @@ const EditProfileScreen = () => {
         location,
         status,
         skills,
-        github,
+        githubUsername,
         bio,
         twitter,
         facebook,
@@ -100,7 +100,7 @@ const EditProfileScreen = () => {
   },[history,userInfo,profile,dispatch]) 
 
      
-
+  console.log(formData)
 
     return (
         <> 
@@ -167,11 +167,11 @@ const EditProfileScreen = () => {
                             </div>
                             <div className="form-group">
                             <input type="text"
-                            name="github"
-                               value={github}
+                            name="githubUsername"
+                               value={githubUsername}
                                onChange={handleOnChange}
-                            className="form-control form-control-lg" placeholder="Github Username"  />
-                            <small className="form-text text-muted">If you want your latest repos and a Github link, include your username</small>
+                            className="form-control form-control-lg" placeholder="githubUsername Username"  />
+                            <small className="form-text text-muted">If you want your latest repos and a githubUsername link, include your username</small>
                             </div>
                             <div className="form-group">
                             <textarea className="form-control form-control-lg" 

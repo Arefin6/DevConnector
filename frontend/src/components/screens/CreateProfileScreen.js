@@ -11,7 +11,7 @@ const CreateProfileScreen = () => {
         location: '',
         status: '',
         skills: '',
-        github: '',
+        githubUsername: '',
         bio: '',
         twitter: '',
         facebook: '',
@@ -45,7 +45,7 @@ const CreateProfileScreen = () => {
         location,
         status,
         skills,
-        github,
+        githubUsername,
         bio,
         twitter,
         facebook,
@@ -147,10 +147,10 @@ const CreateProfileScreen = () => {
                         </div>
                         <div className="form-group">
                         <input type="text"
-                           value={github}
+                           value={githubUsername}
                            onChange={handleOnChange}
-                        className="form-control form-control-lg" placeholder="Github Username" name="github" />
-                        <small className="form-text text-muted">If you want your latest repos and a Github link, include your username</small>
+                        className="form-control form-control-lg" placeholder="githubUsername Username" name="githubUsername" />
+                        <small className="form-text text-muted">If you want your latest repos and a githubUsername link, include your username</small>
                         </div>
                         <div className="form-group">
                         <textarea className="form-control form-control-lg" 
