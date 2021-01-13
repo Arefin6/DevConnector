@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import {createUpdateAction, currentProfile } from '../../actions/profileAction';
+import { currentProfile, profileUpdateAction } from '../../actions/profileAction';
 import Loader from '../Loader';
 import Message from '../Message';
 
@@ -69,7 +69,7 @@ const EditProfileScreen = () => {
     
      const handleSubmit = (e)=>{
          e.preventDefault()
-         dispatch(createUpdateAction(formData))
+         dispatch(profileUpdateAction(formData))
         
           
      }

@@ -14,7 +14,10 @@ import {
     PROFILE_CREATE_FAIL,
     PROFILE_UPDATE_FAIL,
     PROFILE_UPDATE_SUCCESS,
-    PROFILE_UPDATE_REQUEST
+    PROFILE_UPDATE_REQUEST,
+    PROFILE_ADD_EXPERIENCE_REQUEST,
+    PROFILE_ADD_EXPERIENCE_FAIL,
+    PROFILE_ADD_EXPERIENCE_SUCCESS
 } from '../constants/profileConstants';
 
 export const allProfiles = () => async(dispatch)=>{
@@ -128,7 +131,7 @@ export const profileDetailsAction = (id) =>async(dispatch)=>{
     }   
    }  
 
-   export const createUpdateAction = (formData) =>async(dispatch,getState)=>{
+   export const profileUpdateAction = (formData) =>async(dispatch,getState)=>{
     try {
          
         dispatch({type: PROFILE_UPDATE_REQUEST})
@@ -161,3 +164,37 @@ export const profileDetailsAction = (id) =>async(dispatch)=>{
     }   
    }  
 
+
+   export const addExpAction = (formData) =>async(dispatch,getState)=>{
+    try {
+         
+        dispatch({type: PROFILE_ADD_EXPERIENCE_REQUEST})
+
+        const {userLogin:{userInfo}}=getState()
+        
+        const config = {
+            headers:{
+                'Content-type':'application/json',
+                 Authorization:`Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.put(`/api/profile/addExperience`,
+        formData,
+        config)
+         dispatch({
+             type:PROFILE_ADD_EXPERIENCE_SUCCESS,
+             payload:data
+         })
+       } catch (error) {
+        
+        dispatch({
+            type:PROFILE_ADD_EXPERIENCE_FAIL,
+            payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })   
+    }   
+   }  
+  

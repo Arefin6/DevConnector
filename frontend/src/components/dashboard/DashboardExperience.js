@@ -20,7 +20,7 @@ const DashboardExperience = ({profile}) => {
                          profile.experience.map((exp,index) =>(
                             <tr key={index}>
                             <td>{exp.company}</td>
-                            <td>{exp.status}</td>
+                            <td>{exp.title}</td>
                             <td>
                               {exp.from} - {exp.to}
                             </td>

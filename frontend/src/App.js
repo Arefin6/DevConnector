@@ -8,6 +8,7 @@ import {
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import AddExperienceScreen from './components/screens/AddExperienceScreen';
 import CreateProfileScreen from './components/screens/CreateProfileScreen';
 import DashboardScreen from './components/screens/DashboardScreen';
 import DetailsScreen from './components/screens/DetailsScreen';
@@ -48,6 +49,9 @@ function App() {
            </Route>
            <Route path="/editProfile" >
             <EditProfileScreen></EditProfileScreen>
+           </Route>
+           <Route path="/addExperience" >
+            <AddExperienceScreen></AddExperienceScreen>
            </Route>
         
          </Switch>
