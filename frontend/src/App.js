@@ -11,6 +11,7 @@ import Header from './components/Header';
 import CreateProfileScreen from './components/screens/CreateProfileScreen';
 import DashboardScreen from './components/screens/DashboardScreen';
 import DetailsScreen from './components/screens/DetailsScreen';
+import EditProfileScreen from './components/screens/EditProfileScreen';
 import HomeScreen from './components/screens/HomeScreen';
 import Login from './components/screens/Login';
 import ProfileScreen from './components/screens/ProfileScreen';
@@ -44,6 +45,9 @@ function App() {
            </Route>
            <Route path="/createProfile" >
             <CreateProfileScreen></CreateProfileScreen>
+           </Route>
+           <Route path="/editProfile" >
+            <EditProfileScreen></EditProfileScreen>
            </Route>
         
          </Switch>

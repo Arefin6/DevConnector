@@ -11,7 +11,10 @@ import {
     PROFILE_CURRENT_SUCCESS,
     PROFILE_CREATE_REQUEST,
     PROFILE_CREATE_SUCCESS,
-    PROFILE_CREATE_FAIL
+    PROFILE_CREATE_FAIL,
+    PROFILE_UPDATE_FAIL,
+    PROFILE_UPDATE_SUCCESS,
+    PROFILE_UPDATE_REQUEST
 } from '../constants/profileConstants';
 
 export const allProfiles = () => async(dispatch)=>{
@@ -124,3 +127,37 @@ export const profileDetailsAction = (id) =>async(dispatch)=>{
         })   
     }   
    }  
+
+   export const createUpdateAction = (formData) =>async(dispatch,getState)=>{
+    try {
+         
+        dispatch({type: PROFILE_UPDATE_REQUEST})
+
+        const {userLogin:{userInfo}}=getState()
+        
+        const config = {
+            headers:{
+                'Content-type':'application/json',
+                 Authorization:`Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.put(`/api/profile`,
+        formData,
+        config)
+         dispatch({
+             type:PROFILE_UPDATE_SUCCESS,
+             payload:data
+         })
+       } catch (error) {
+        
+        dispatch({
+            type:PROFILE_UPDATE_FAIL,
+            payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })   
+    }   
+   }  
+

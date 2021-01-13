@@ -88,23 +88,25 @@ const createProfile = asyncHandler(async(req,res) =>{
 //@access private
 
 const updateProfile = asyncHandler(async(req,res) =>{
-
     const {
+        company,
         website,
-        skills,
+        location,
         status,
+        skills,
+        bio,
+        github,
         youtube,
         twitter,
         instagram,
         linkedin,
         facebook,
-        bio,
         // spread the rest of the fields we don't need to check
         ...rest
       } = req.body;
 
-      const socialFields = { youtube, twitter, instagram, linkedin, facebook };
-
+      const socialFields = {  twitter,facebook,linkedin,youtube,instagram };
+    
     // normalize social fields to ensure valid url
     for (const [key, value] of Object.entries(socialFields)) {
       if (value && value.length > 0)
@@ -115,12 +117,15 @@ const updateProfile = asyncHandler(async(req,res) =>{
 
      if(profile){
           profile.website = normalize(website, { forceHttps: true })||profile.website
-          profile.status = status||profile.status
           profile.skills =  Array.isArray(skills)
           ? skills
           : skills.split(',').map((skill) => ' ' + skill.trim())||profile.skills
-          profile.social = socialFields||profile.social,
+          profile.social = socialFields||profile.social
+          profile.company = company||profile.company
+          profile.location = location||profile.location
+          profile.status = status||profile.status
           profile.bio = bio||profile.bio
+          profile.github = github||profile.github
 
           const updateProfile = await profile.save()
 
