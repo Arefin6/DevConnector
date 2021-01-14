@@ -22,7 +22,7 @@ const DashboardExperience = ({profile}) => {
                             <td>{exp.company}</td>
                             <td>{exp.title}</td>
                             <td>
-                              {exp.from} - {exp.to}
+                              {exp.from.substring(0,10) }  ---  {  exp.to ? exp.to.substring(0,10) : exp.created.substring(0,10)}
                             </td>
                             <td>
                               <button className="btn btn-danger">

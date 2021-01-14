@@ -17,7 +17,10 @@ import {
     PROFILE_UPDATE_REQUEST,
     PROFILE_ADD_EXPERIENCE_REQUEST,
     PROFILE_ADD_EXPERIENCE_FAIL,
-    PROFILE_ADD_EXPERIENCE_SUCCESS
+    PROFILE_ADD_EXPERIENCE_SUCCESS,
+    PROFILE_ADD_EDUCATION_REQUEST,
+    PROFILE_ADD_EDUCATION_SUCCESS,
+    PROFILE_ADD_EDUCATION_FAIL
 } from '../constants/profileConstants';
 
 export const allProfiles = () => async(dispatch)=>{
@@ -198,3 +201,38 @@ export const profileDetailsAction = (id) =>async(dispatch)=>{
     }   
    }  
   
+
+
+   export const addEduAction = (formData) =>async(dispatch,getState)=>{
+    try {
+         
+        dispatch({type: PROFILE_ADD_EDUCATION_REQUEST})
+
+        const {userLogin:{userInfo}}=getState()
+        
+        const config = {
+            headers:{
+                'Content-type':'application/json',
+                 Authorization:`Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.put(`/api/profile/addEducation`,
+        formData,
+        config)
+         dispatch({
+             type:PROFILE_ADD_EDUCATION_SUCCESS,
+             payload:data
+         })
+       } catch (error) {
+        
+        dispatch({
+            type:PROFILE_ADD_EDUCATION_FAIL,
+            payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })   
+    }   
+   }  
+    

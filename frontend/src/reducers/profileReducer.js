@@ -17,6 +17,9 @@ import {
     PROFILE_ADD_EXPERIENCE_REQUEST,
     PROFILE_ADD_EXPERIENCE_FAIL,
     PROFILE_ADD_EXPERIENCE_SUCCESS,
+    PROFILE_ADD_EDUCATION_REQUEST,
+    PROFILE_ADD_EDUCATION_SUCCESS,
+    PROFILE_ADD_EDUCATION_FAIL,
 } from '../constants/profileConstants';
 
 export const profilesReducer = (state = {profiles:[]},action)=>{
@@ -154,6 +157,31 @@ export const profileAddExpReducer = (state = {},action)=>{
              success:true
          } 
       case PROFILE_ADD_EXPERIENCE_FAIL:
+         return{
+             loading:false,
+             success:false,
+             error:action.payload
+         } 
+       default:
+         return state           
+  }
+}
+
+export const profileAddEducation = (state = {},action)=>{
+  
+  switch(action.type){
+    
+      case PROFILE_ADD_EDUCATION_REQUEST:
+        return{
+            ...state,
+            loading:true,
+        }
+      case PROFILE_ADD_EDUCATION_SUCCESS:
+         return{
+             loading:false,
+             success:true
+         } 
+      case PROFILE_ADD_EDUCATION_FAIL:
          return{
              loading:false,
              success:false,

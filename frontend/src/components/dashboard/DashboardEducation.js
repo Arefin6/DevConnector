@@ -1,6 +1,11 @@
 import React from 'react';
 
 const DashboardEducation = ({profile}) => {
+   
+   const handleDelete = (id) => {
+    console.log(id)
+   }
+   
     return (
         <>
              <div>
@@ -8,24 +13,27 @@ const DashboardEducation = ({profile}) => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th>School</th>
+                          <th>College</th>
                           <th>Degree</th>
                           <th>Years</th>
                           <th />
                         </tr>
                       </thead>
                       <tbody>
+                        
                         {profile.education.length >0 ?
                         (
-                         profile.edu.map((edu,index) =>(
+                         profile.education.map((edu,index) =>(
                             <tr key={index}>
-                            <td>{edu.school}</td>
+                            <td>{edu.college}</td>
                             <td>{edu.degree}</td>
                             <td>
-                              {edu.from} - {edu.to}
+                            {edu.from.substring(0,10) }  ---  {  edu.to ? edu.to.substring(0,10) : edu.created.substring(0,10)}
                             </td>
                             <td>
-                              <button className="btn btn-danger">
+                              <button className="btn btn-danger"
+                              onClick={()=>handleDelete(edu._id)}
+                              >
                                 Delete
                               </button>
                             </td>

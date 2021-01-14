@@ -15,6 +15,7 @@ import DetailsScreen from './components/screens/DetailsScreen';
 import EditProfileScreen from './components/screens/EditProfileScreen';
 import HomeScreen from './components/screens/HomeScreen';
 import Login from './components/screens/Login';
+import AddEducationScreen from '../src/components/screens/AddEducationScreen'
 import ProfileScreen from './components/screens/ProfileScreen';
 import Register from './components/screens/Register';
 
@@ -52,6 +53,9 @@ function App() {
            </Route>
            <Route path="/addExperience" >
             <AddExperienceScreen></AddExperienceScreen>
+           </Route>
+           <Route path="/addEducation" >
+            <AddEducationScreen></AddEducationScreen>
            </Route>
         
          </Switch>

@@ -12,7 +12,7 @@ const ProfileCred = ({portfolio}) => {
                portfolio.experience.map(exp =>(
                <li className="list-group-item" key={exp.index}>
               <h4>{exp.company}</h4>
-              <p>{exp.from} - {exp.current ? "Current" : exp.to}</p>
+              <p>{exp.from.substring(0,10)} - {exp.current ? "Current" : exp.to.substring(0,10)}</p>
             
               <p>
                 <strong>Description:</strong>{exp.description}</p>
@@ -36,12 +36,12 @@ const ProfileCred = ({portfolio}) => {
                 portfolio.education.map(edu =>(
                    
                   <li className="list-group-item" key={edu.index}>
-                  <h4>{edu.school}</h4>
-                  <p>{edu.from} - {edu.current ? 'current' : edu.to}</p>
+                  <h4>{edu.college}</h4>
+                  <p>{edu.from.substring(0,10)} - {edu.current ? 'current' : edu.to.substring(0,10)}</p>
                   <p>
                     <strong>Degree: </strong>{edu.degree}</p>
                   <p>
-                    <strong>Field Of Study: </strong>{edu.fieldofstudy}</p>
+                    <strong>Field Of Study: </strong>{edu.fieldOfStudy}</p>
                   <p> 
                       <strong>Description:</strong>{edu.description}</p>
                 </li>

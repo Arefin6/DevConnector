@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { addExpAction } from '../../actions/profileAction';
+import { addEduAction} from '../../actions/profileAction';
 import Loader from '../Loader';
 import Message from '../Message';
 
-const AddExperienceScreen = () => {
+const AddEducationScreen = () => {
 
     const initialState = {
-        title: '',
-        company: '',
-        location: '',
+        college: '',
+        degree: '',
+        fieldOfStudy: '',
         current: false,
         description:''
      
@@ -24,13 +24,13 @@ const AddExperienceScreen = () => {
     const userLoggedIn = useSelector(state =>state.userLogin)
     const {loading,userInfo} = userLoggedIn 
 
-    const profileAddExp = useSelector(state =>state.profileAddExp)
-    const {success,error} = profileAddExp 
+    const profileAddEdu = useSelector(state =>state.profileAddEdu)
+    const {success,error} = profileAddEdu 
 
     const {
-        title,
-        company,
-        location,
+        college,
+        degree,
+        fieldOfStudy,
         from,
         to,
         current,
@@ -48,7 +48,7 @@ const AddExperienceScreen = () => {
 
     const submitHandler = (e) =>{
         e.preventDefault()
-        dispatch(addExpAction(formData))
+        dispatch(addEduAction(formData))
     } 
      
     useEffect(()=>{
@@ -72,27 +72,27 @@ const AddExperienceScreen = () => {
           <Link to="/dashboard" className="btn btn-light">
             Go Back
           </Link>
-          <h1 className="display-4 text-center">Add Your Experience</h1>
-          <p className="lead text-center">Add any developer/programming positions that you have had in the past</p>
+          <h1 className="display-4 text-center">Add Your Education</h1>
+          <p className="lead text-center">Add any College Degree that you have had in the past</p>
     
           <form onSubmit={submitHandler} >
             <div className="form-group my-3">
               <input type="text" 
-              value={title}
+              value={college}
               onChange={handleOnChange}
-              className="form-control form-control-lg" placeholder="* Job Title" name="title" required />
+              className="form-control form-control-lg" placeholder="Your college" name="college" required />
             </div>
             <div className="form-group my-3">
               <input type="text"
-                value={company}
+                value={degree}
                 onChange={handleOnChange}
-              className="form-control form-control-lg" placeholder="* Company" name="company" required />
+              className="form-control form-control-lg" placeholder="degree" name="degree" required />
             </div>
             <div className="form-group my-3">
               <input type="text"
-               value={location}
+               value={fieldOfStudy}
                onChange={handleOnChange}
-              className="form-control form-control-lg" placeholder="Location" name="location" />
+              className="form-control form-control-lg" placeholder="fieldOfStudy" name="fieldOfStudy" />
             </div>
             <h6>From Date</h6>
             <div className="form-group my-3">
@@ -116,14 +116,14 @@ const AddExperienceScreen = () => {
                onChange={toggleCurrentValue}
               id="current" />
               <label className="form-check-label" htmlFor="current">
-                Current Job
+                Current Student
               </label>
             </div>
             <div className="form-group my-3">
               <textarea 
                value={description}
                onChange={handleOnChange}
-              className="form-control form-control-lg" placeholder="Job Description" name="description"></textarea>
+              className="form-control form-control-lg" placeholder="Program Description" name="description"></textarea>
               <small className="form-text text-muted">Some of your responsabilities, etc</small>
             </div>
             <input type="submit" className="btn btn-info col-12 text-white mt-4" />
@@ -139,4 +139,4 @@ const AddExperienceScreen = () => {
     );
 };
 
-export default AddExperienceScreen;
+export default AddEducationScreen;
