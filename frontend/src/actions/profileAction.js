@@ -20,7 +20,10 @@ import {
     PROFILE_ADD_EXPERIENCE_SUCCESS,
     PROFILE_ADD_EDUCATION_REQUEST,
     PROFILE_ADD_EDUCATION_SUCCESS,
-    PROFILE_ADD_EDUCATION_FAIL
+    PROFILE_ADD_EDUCATION_FAIL,
+    PROFILE_DELETE_EDUCATION_REQUEST,
+    PROFILE_DELETE_EDUCATION_SUCCESS,
+    PROFILE_DELETE_EDUCATION_FAIL
 } from '../constants/profileConstants';
 
 export const allProfiles = () => async(dispatch)=>{
@@ -236,3 +239,36 @@ export const profileDetailsAction = (id) =>async(dispatch)=>{
     }   
    }  
     
+   export const deleteEducation = (edu_id) =>async(dispatch,getState)=>{
+    try {
+         
+        dispatch({type: PROFILE_DELETE_EDUCATION_REQUEST})
+
+        const {userLogin:{userInfo}}=getState()
+        
+        const config = {
+            headers:{
+                'Content-type':'application/json',
+                 Authorization:`Bearer ${userInfo.token}`
+            }
+        }
+
+        const data = await axios.post(`/api/profile/${edu_id}/delete`,
+        {},config)
+
+         dispatch({
+             type:PROFILE_DELETE_EDUCATION_SUCCESS,
+             payload:data
+         })
+       } catch (error) {
+        
+        dispatch({
+            type:PROFILE_DELETE_EDUCATION_FAIL,
+            payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })   
+    }   
+   }  
+     

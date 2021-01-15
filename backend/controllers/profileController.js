@@ -285,14 +285,15 @@ const deleteExperience = asyncHandler(async(req,res) =>{
 const deleteEducation = asyncHandler(async(req,res) =>{
 
    
-    const foundProfile = await Profile.findOne({user:req.user._id})
+    const foundProfile = await Profile.findOne({user:req.user})
 
     if(foundProfile){
         
-          foundProfile.education = foundProfile.education.filter(edu => edu._id.toString() !== req.params.edu_id)
-       
-         const updateProfile = await foundProfile.save()
-           res.send(updateProfile)
+          foundProfile.education = foundProfile.education.filter((edu) => edu._id.toString() !== req.params.edu_id);
+           
+           const updatedProfile = await foundProfile.save();
+
+          res.status(200).send(updatedProfile)
 
        } 
     else{

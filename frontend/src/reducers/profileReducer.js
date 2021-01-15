@@ -20,6 +20,9 @@ import {
     PROFILE_ADD_EDUCATION_REQUEST,
     PROFILE_ADD_EDUCATION_SUCCESS,
     PROFILE_ADD_EDUCATION_FAIL,
+    PROFILE_DELETE_EDUCATION_REQUEST,
+    PROFILE_DELETE_EDUCATION_SUCCESS,
+    PROFILE_DELETE_EDUCATION_FAIL,
 } from '../constants/profileConstants';
 
 export const profilesReducer = (state = {profiles:[]},action)=>{
@@ -179,9 +182,35 @@ export const profileAddEducation = (state = {},action)=>{
       case PROFILE_ADD_EDUCATION_SUCCESS:
          return{
              loading:false,
-             success:true
+             success:true,
+             profile:action.payload
          } 
       case PROFILE_ADD_EDUCATION_FAIL:
+         return{
+             loading:false,
+             success:false,
+             error:action.payload
+         } 
+       default:
+         return state           
+  }
+}
+
+export const profileDeleteEducation = (state = {},action)=>{
+  
+  switch(action.type){
+    
+      case PROFILE_DELETE_EDUCATION_REQUEST:
+        return{
+            ...state,
+            loading:true,
+        }
+      case PROFILE_DELETE_EDUCATION_SUCCESS:
+         return{
+             loading:false,
+             success:true
+         } 
+      case PROFILE_DELETE_EDUCATION_FAIL:
          return{
              loading:false,
              success:false,

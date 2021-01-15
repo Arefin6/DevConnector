@@ -1,7 +1,7 @@
 import {createStore,combineReducers,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import { profileAddEducation, profileAddExpReducer, profileCreateReducer, profileCurrentReducer, profileDetailsReducer, profilesReducer, profileUpdateReducer } from './reducers/profileReducer';
+import { profileAddEducation, profileAddExpReducer, profileCreateReducer, profileCurrentReducer, profileDeleteEducation, profileDetailsReducer, profilesReducer, profileUpdateReducer } from './reducers/profileReducer';
 import { loginReducer, registerReducer } from './reducers/userReducer';
 
 
@@ -14,7 +14,8 @@ const reducer = combineReducers({
     profileCreate:profileCreateReducer,
     profileUpdate:profileUpdateReducer,
     profileAddExp:profileAddExpReducer,
-    profileAddEdu:profileAddEducation
+    profileAddEdu:profileAddEducation,
+    profileDeleteEdu:profileDeleteEducation
 })
 
 

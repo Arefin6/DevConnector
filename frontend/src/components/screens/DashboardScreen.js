@@ -18,12 +18,13 @@ const DashboardScreen = () => {
     const profileCurrent = useSelector(state =>state.profileCurrent)
     const {loading,profile} = profileCurrent 
      
-    if(!userInfo){
-        history.push('/login')
-    }
+    
      useEffect(()=>{
+      if(!userInfo){
+        history.push('/login')
+      }
          dispatch(currentProfile())
-     },[dispatch])
+     },[dispatch,history,userInfo])
 
     return (
         <>
@@ -57,7 +58,7 @@ const DashboardScreen = () => {
 
              <DashboardExperience profile={profile}></DashboardExperience> 
 
-             <DashboardEducation profile={profile}></DashboardEducation> 
+             <DashboardEducation portfolio={profile}></DashboardEducation> 
            </div>
          </div>
        </div>
