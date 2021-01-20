@@ -18,6 +18,7 @@ import Login from './components/screens/Login';
 import AddEducationScreen from '../src/components/screens/AddEducationScreen'
 import ProfileScreen from './components/screens/ProfileScreen';
 import Register from './components/screens/Register';
+import PostFeedScreen from './components/screens/posts/PostFeedScreen';
 
 
 function App() {
@@ -56,6 +57,9 @@ function App() {
            </Route>
            <Route path="/addEducation" >
             <AddEducationScreen></AddEducationScreen>
+           </Route>
+           <Route path="/postFeed" >
+            <PostFeedScreen></PostFeedScreen>
            </Route>
         
          </Switch>

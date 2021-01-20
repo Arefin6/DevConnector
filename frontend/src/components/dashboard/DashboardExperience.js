@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteExperience } from '../../actions/profileAction';
+import Loader from '../Loader';
+import Message from '../Message';
 
 const DashboardExperience = ({profile}) => {
+
+
+  const dispatch = useDispatch()
+
+  const  profileDeleteExp = useSelector(state => state.profileDeleteExp)
+  const {loading,error,success} = profileDeleteExp
+
+  
+  const handleDelete = (exp_id) => {
+       if(window.confirm('Are you Sure')){
+         dispatch(deleteExperience(exp_id))
+       }
+       
+    
+  }
+  useEffect(()=>{
+     if(success){
+       window.location.reload()
+     }
+  },[success])
+
     return (
         <>
+         {loading ? <Loader></Loader>
+          :
+           error ? <Message>{error}</Message> 
+          :
            <div>
               <h4 className="mb-2">Experience Credentials</h4>
                    <table className="table">
@@ -25,7 +54,9 @@ const DashboardExperience = ({profile}) => {
                               {exp.from.substring(0,10) }  ---  {  exp.to ? exp.to.substring(0,10) : exp.created.substring(0,10)}
                             </td>
                             <td>
-                              <button className="btn btn-danger">
+                              <button 
+                              onClick={()=> handleDelete(exp._id)}
+                              className="btn btn-danger">
                                 Delete
                               </button>
                             </td>
@@ -41,7 +72,7 @@ const DashboardExperience = ({profile}) => {
                       </tbody>
                     </table>
                   </div>
-
+          }
         </>
     );
 };

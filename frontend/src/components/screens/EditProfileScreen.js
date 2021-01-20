@@ -100,7 +100,7 @@ const EditProfileScreen = () => {
   },[history,userInfo,profile,dispatch]) 
 
      
-  console.log(formData)
+  
 
     return (
         <> 

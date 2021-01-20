@@ -23,6 +23,9 @@ import {
     PROFILE_DELETE_EDUCATION_REQUEST,
     PROFILE_DELETE_EDUCATION_SUCCESS,
     PROFILE_DELETE_EDUCATION_FAIL,
+    PROFILE_DELETE_EXPERIENCE_REQUEST,
+    PROFILE_DELETE_EXPERIENCE_FAIL,
+    PROFILE_DELETE_EXPERIENCE_SUCCESS,
 } from '../constants/profileConstants';
 
 export const profilesReducer = (state = {profiles:[]},action)=>{
@@ -220,5 +223,31 @@ export const profileDeleteEducation = (state = {},action)=>{
          return state           
   }
 }
+
+export const profileDeleteExperience = (state = {},action)=>{
+  
+  switch(action.type){
+    
+      case PROFILE_DELETE_EXPERIENCE_REQUEST:
+        return{
+            ...state,
+            loading:true,
+        }
+      case PROFILE_DELETE_EXPERIENCE_SUCCESS:
+         return{
+             loading:false,
+             success:true
+         } 
+      case PROFILE_DELETE_EXPERIENCE_FAIL:
+         return{
+             loading:false,
+             success:false,
+             error:action.payload
+         } 
+       default:
+         return state           
+  }
+}
+
 
 

@@ -1,5 +1,6 @@
  import express from 'express';
  import dotEnv from 'dotenv';
+ import bodyParser from 'body-parser';
 import connectDb from './config/db.js';
 import userRoute from './routes/userRoutes.js'
 import postRoute from './routes/postRoute.js'
@@ -11,6 +12,10 @@ connectDb()
 const app = express()
 
 app.use(express.json())
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 
 app.get('/',(req,res)=>{
     res.send('Hello Arefin');

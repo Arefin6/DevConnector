@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { deleteEducation } from '../../actions/profileAction';
 import Loader from '../Loader';
 import Message from '../Message';
@@ -8,19 +7,17 @@ import Message from '../Message';
 const DashboardEducation = ({portfolio}) => {
 
    const dispatch = useDispatch()
-   const history = useHistory()
-
-   
-   const profileCurrent = useSelector(state =>state.profileCurrent)
-    const {profile} = profileCurrent 
+  
 
    const  profileDeleteEdu = useSelector(state => state.profileDeleteEdu)
    const {loading,error,success} = profileDeleteEdu
 
    
    const handleDelete = (edu_id) => {
-     
-        dispatch(deleteEducation(edu_id))
+        if(window.confirm('Are you Sure')){
+          dispatch(deleteEducation(edu_id))
+        }
+        
      
    }
    useEffect(()=>{

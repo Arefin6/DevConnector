@@ -30,7 +30,7 @@ const postSchema = mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'User'
               },
-             text:{ 
+             comment:{ 
               type:String,
               required:true
           },
@@ -53,6 +53,6 @@ const postSchema = mongoose.Schema({
  },
  );
 
- const Post = mongoose.model('Post',postSchema)
+ const post = mongoose.model('Post',postSchema)
 
- export default Post
+ export default post

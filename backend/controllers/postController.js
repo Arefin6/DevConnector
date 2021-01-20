@@ -1,12 +1,13 @@
-import Post from '../models/PostModel.js'
-import asyncHandler from 'express-async-handler'
+import Post from '../models/PostModel.js';
+import User from '../models/userModel.js';
+import asyncHandler from 'express-async-handler';
 
 //@route Get /api/profile/test
 //@desc Tet route
 //@access public
 
 const testRoute = (req,res) =>{
-    res.send({message:"Post is Running"});
+    res.send({message:"Post is Running"})
 }
 
 //@route POST /api/posts/
@@ -14,16 +15,25 @@ const testRoute = (req,res) =>{
 //@access private
 
 const createPost = asyncHandler(async(req,res)=>{
-             
-  const post = await Post.create({
-      user:req.user.id,
+
+  const {text} =req.body
+
+ 
+  const createdPost = await Post.create({
+      text:text,
+      user:req.user._id,
       name:req.user.name,
-      avatar:req.user.avatar,
-      text:req.body.text
+      avatar:req.user.avatar
   })
-
-   res.send(post)
-
+  
+  if(createdPost){
+   
+    res.status(201).json(createdPost)
+}
+else{
+    res.status(500).json({message:"something went wrong"})
+}
+ 
 })
 
 //@route Get /api/posts/
