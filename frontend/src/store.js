@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import { profileAddEducation, profileAddExpReducer, profileCreateReducer, profileCurrentReducer, profileDeleteEducation, profileDeleteExperience, profileDetailsReducer, profilesReducer, profileUpdateReducer } from './reducers/profileReducer';
 import { loginReducer, registerReducer } from './reducers/userReducer';
-import { postCreateReducer } from './reducers/postReducer';
+import { postAllReducer, postCreateReducer, postDeleteReducer } from './reducers/postReducer';
 
 
 const reducer = combineReducers({
@@ -18,7 +18,9 @@ const reducer = combineReducers({
     profileAddEdu:profileAddEducation,
     profileDeleteEdu:profileDeleteEducation,
     profileDeleteExp:profileDeleteExperience,
-    postCreate:postCreateReducer
+    postCreate:postCreateReducer,
+    postAll:postAllReducer,
+    postDelete:postDeleteReducer
 })
 
 

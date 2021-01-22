@@ -1,3 +1,11 @@
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 export const ADD_POST_FAIL  =    'ADD_POST_FAIL';
+
+export const POST_ALL_REQUEST =  'POST_ALL_REQUEST';
+export const POST_ALL_SUCCESS =  'POST_ALL_SUCCESS';
+export const POST_ALL_FAIL   =   'POST_ALL_FAIL';
+
+export const POST_DELETE_REQUEST =  'POST_DELETE_REQUEST';
+export const POST_DELETE_SUCCESS =  'POST_DELETE_SUCCESS';
+export const POST_DELETE_FAIL   =   'POST_DELETE_FAIL';

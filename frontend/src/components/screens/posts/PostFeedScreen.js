@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { addPost } from '../../../actions/postAction';
+import { addPost, getAllPost } from '../../../actions/postAction';
 import Loader from '../../Loader';
 import Message from '../../Message';
+import PostDetails from './PostDetails';
 
 const PostFeedScreen = () => {
    const [text,setText] = useState('');
@@ -15,6 +16,9 @@ const PostFeedScreen = () => {
 
    const postCreate = useSelector(state => state.postCreate)
    const {loading,error,success} = postCreate 
+
+   const postAll = useSelector(state => state.postAll)
+   const {error:postError,posts} = postAll 
   
   
    const handleSubmit = (e) =>{
@@ -29,7 +33,9 @@ const PostFeedScreen = () => {
      if(success){
        setText('')
      }
-   },[success,history,userInfo])
+     dispatch(getAllPost())
+
+   },[success,history,userInfo,dispatch])
     
    
     return (
@@ -56,41 +62,16 @@ const PostFeedScreen = () => {
               </form>
             </div>
           </div>
-        </div>
+          {
+            postError ? <Message>{postError}</Message>
 
- 
-        <div className="posts">         
-          <div className="card card-body mb-3">
-            <div className="row">
-              <div className="col-md-2">
-                <a href="profile.html">
-                  <img className="rounded-circle d-none d-md-block" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
-                    alt="" />
-                </a>
-                <br />
-                <p className="text-center">John Doe</p>
-              </div>
-              <div className="col-md-10">
-                <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint possimus corporis sunt necessitatibus! Minus
-                  nesciunt soluta suscipit nobis. Amet accusamus distinctio cupiditate blanditiis dolor? Illo perferendis
-                  eveniet cum cupiditate aliquam?</p>
-                <button type="button" className="btn btn-light mr-1">
-                  <i className="text-info fas fa-thumbs-up"></i>
-                  <span className="badge badge-light">4</span>
-                </button>
-                <button type="button" className="btn btn-light mr-1">
-                  <i className="text-secondary fas fa-thumbs-down"></i>
-                </button>
-                <a href="post.html" className="btn btn-info mr-1">
-                  Comments
-                </a>
-                 <button type="button" className="btn btn-danger mr-1">
-                  <i className="fas fa-times" />
-                </button> 
-              </div>
-            </div>
-          </div>
-
+            :(
+             posts.map(post =>(
+              <PostDetails key={post._id} post={post} userInfo={userInfo}></PostDetails>
+             )) 
+            )
+          }
+       
         </div>
       </div>
     </div>

@@ -92,7 +92,7 @@ const deletePost = asyncHandler(async(req,res)=>{
           return res.status(401).json({error:"Not Authorized"})
       }
       else{
-         await Post.remove()
+         await foundPost.remove()
          
          res.send({message:'Post removed'})
       }
