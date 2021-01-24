@@ -1,5 +1,4 @@
 import Post from '../models/PostModel.js';
-import User from '../models/userModel.js';
 import asyncHandler from 'express-async-handler';
 
 //@route Get /api/profile/test
@@ -112,7 +111,7 @@ const likePost = asyncHandler(async(req,res)=>{
 
       if(!post){
          const error = "No Post Found"  
-        return res.status(404).json(error)
+         res.status(404).json(error)
          
       }
       //check Already liked or not
