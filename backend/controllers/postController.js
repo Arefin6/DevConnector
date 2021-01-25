@@ -116,7 +116,7 @@ const likePost = asyncHandler(async(req,res)=>{
       }
       //check Already liked or not
       if(post.likes.find(like => like.user.toString() === req.user.id )){
-           res.status(400).json({alreadyLiked:"You Already Liked the post"})   
+           res.status(400).json({message:"You Already Liked the post"})   
       }
       else{
           post.likes.unshift({user:req.user.id})
@@ -144,7 +144,7 @@ const unlikePost = asyncHandler(async(req,res)=>{
       }
       //check Already liked or not
       if(!post.likes.find(like => like.user.toString() === req.user.id )){
-           res.status(400).json({NotLiked:"You Have not Liked the post"})   
+           res.status(400).json({message:"You Have not Liked the post"})   
       }
       else{
           post.likes = post.likes.filter(like => like.user.toString() !== req.user.id)

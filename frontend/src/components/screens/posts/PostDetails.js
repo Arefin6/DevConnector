@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deletePost, likePost } from '../../../actions/postAction';
+import { deletePost, likePost, UnlikePost } from '../../../actions/postAction';
 import { POST_ADD_LIKE_RESET } from '../../../constants/postConstants';
 import Loader from '../../Loader';
 import Message from '../../Message';
@@ -16,6 +16,9 @@ const PostDetails = ({post,userInfo}) => {
     const  postLike = useSelector(state =>state.postLike)
     const {success:successLike,error:errorLike} = postLike
 
+    const  postUnLike = useSelector(state =>state.postUnLike)
+    const {success:successUnLike,error:errorUnLike} = postUnLike
+
 
     const handleDelete = (id) =>{
         if(window.confirm('Are You Sure ?')){
@@ -29,7 +32,7 @@ const PostDetails = ({post,userInfo}) => {
     } 
 
     const handleUnLike = (id) =>{
-
+       dispatch(UnlikePost(id))
     }
 
     useEffect(()=>{
@@ -40,19 +43,23 @@ const PostDetails = ({post,userInfo}) => {
            dispatch({type:POST_ADD_LIKE_RESET})
            window.location.reload()
        }
+       if(successUnLike){
+           window.location.reload()
+       }
     
-    },[success,successLike])
+    },[success,successLike,successUnLike])
    
     return (
         <>
         {loading ? <Loader></Loader>:(
           error ? <Message>{error}</Message>
-          : errorLike ? <Message>{errorLike}</Message>
           :(
             <div className="posts">         
             <div className="card card-body mb-3">
               <div className="row">
-  
+                   
+              {errorLike && <Message>{errorLike}</Message>}  
+              {errorUnLike && <Message>{errorUnLike}</Message>}  
                 <div className="col-md-2">
                   <Link to={`/profile/${post.user}`}>
                     <img className="rounded-circle d-none d-md-block" src={post.avatar}

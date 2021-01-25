@@ -3,7 +3,7 @@ import { ADD_POST_FAIL, ADD_POST_REQUEST, ADD_POST_SUCCESS,
   POST_ADD_LIKE_REQUEST,
   POST_ADD_LIKE_RESET,
   POST_ADD_LIKE_SUCCESS,
-   POST_ALL_FAIL, POST_ALL_REQUEST, POST_ALL_SUCCESS, POST_DELETE_FAIL, POST_DELETE_REQUEST, POST_DELETE_SUCCESS } from '../constants/postConstants.js'
+   POST_ALL_FAIL, POST_ALL_REQUEST, POST_ALL_SUCCESS, POST_DELETE_FAIL, POST_DELETE_REQUEST, POST_DELETE_SUCCESS, POST_UNLIKE_FAIL, POST_UNLIKE_REQUEST, POST_UNLIKE_SUCCESS } from '../constants/postConstants.js'
 
 export const postCreateReducer = (state = {},action)=>{
   
@@ -78,8 +78,6 @@ export const postCreateReducer = (state = {},action)=>{
            return state           
     }
   }
-  
-  
   export const postAddLikeReducer = (state = {},action)=>{
   
     switch(action.type){
@@ -105,4 +103,35 @@ export const postCreateReducer = (state = {},action)=>{
          default:
            return state           
     }
+  }
+  
+  export const postUnLikeReducer = (state = {},action)=>{
+  
+    switch(action.type){
+      
+        case POST_UNLIKE_REQUEST:
+          return{
+              ...state, 
+              loading:true,
+          }
+        case POST_UNLIKE_SUCCESS:
+           return{
+               loading:false,
+               success:true
+           } 
+        case POST_UNLIKE_FAIL:
+           return{
+               loading:false,
+               success:false,
+               error:action.payload
+           } 
+         case POST_ADD_LIKE_RESET:
+           return {}  
+         default:
+           return state           
+    }
   } 
+  
+  
+  
+  
