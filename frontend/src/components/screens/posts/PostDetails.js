@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deletePost, likePost, UnlikePost } from '../../../actions/postAction';
@@ -9,6 +9,8 @@ import Message from '../../Message';
 const PostDetails = ({post,userInfo}) => {
 
     const dispatch = useDispatch()
+
+    const[liked,setLiked] = useState(false)
 
     const postDelete = useSelector(state =>state.postDelete)
     const {loading,success,error} = postDelete
@@ -34,6 +36,19 @@ const PostDetails = ({post,userInfo}) => {
     const handleUnLike = (id) =>{
        dispatch(UnlikePost(id))
     }
+    
+    const checkedLiked = (likes) =>{
+
+        if(likes.filter(like => like.user === userInfo._id).length>0){
+            return true
+        }
+        else{
+            return false
+        }
+    
+    }
+   
+    console.log(liked)
 
     useEffect(()=>{
        if(success){
@@ -58,8 +73,8 @@ const PostDetails = ({post,userInfo}) => {
             <div className="card card-body mb-3">
               <div className="row">
                    
-              {errorLike && <Message>{errorLike}</Message>}  
-              {errorUnLike && <Message>{errorUnLike}</Message>}  
+              {errorLike && <Message  variant={"info"}>{errorLike}</Message>}  
+              {errorUnLike && <Message variant={"info"}>{errorUnLike}</Message>}  
                 <div className="col-md-2">
                   <Link to={`/profile/${post.user}`}>
                     <img className="rounded-circle d-none d-md-block" src={post.avatar}
@@ -73,7 +88,7 @@ const PostDetails = ({post,userInfo}) => {
                   <button type="button" 
                   onClick={()=>handleAddLike(post._id)} 
                   className="btn btn-light mr-1">
-                    <i className="text-info fas fa-thumbs-up"></i>
+                    <i className={checkedLiked(post.likes) ? "text-info fas fa-thumbs-up": "fas fa-thumbs-up"}></i>
                     <span className="text-dark mx-2">{post.likes.length}</span>
                   </button>
                   <button type="button" 
