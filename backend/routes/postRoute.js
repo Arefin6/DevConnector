@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/test',testRoute)
 router.route('/:id')
-.get(getSinglePost)
+.get(protect,getSinglePost)
 .delete(protect,deletePost)
 router.put('/like/:id',protect,likePost)
 router.put('/unlike/:id',protect,unlikePost)

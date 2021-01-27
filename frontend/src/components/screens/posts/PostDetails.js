@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deletePost, likePost, UnlikePost } from '../../../actions/postAction';
@@ -10,8 +10,7 @@ const PostDetails = ({post,userInfo}) => {
 
     const dispatch = useDispatch()
 
-    const[liked,setLiked] = useState(false)
-
+ 
     const postDelete = useSelector(state =>state.postDelete)
     const {loading,success,error} = postDelete
 
@@ -48,7 +47,6 @@ const PostDetails = ({post,userInfo}) => {
     
     }
    
-    console.log(liked)
 
     useEffect(()=>{
        if(success){
@@ -62,7 +60,7 @@ const PostDetails = ({post,userInfo}) => {
            window.location.reload()
        }
     
-    },[success,successLike,successUnLike])
+    },[success,successLike,successUnLike,dispatch])
    
     return (
         <>

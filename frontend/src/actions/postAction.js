@@ -2,7 +2,7 @@ import axios from 'axios'
 import {ADD_POST_FAIL, ADD_POST_REQUEST,
      ADD_POST_SUCCESS, POST_ADD_LIKE_FAIL,
       POST_ADD_LIKE_REQUEST, POST_ADD_LIKE_SUCCESS, 
-      POST_ALL_FAIL, POST_ALL_REQUEST, POST_ALL_SUCCESS, POST_DELETE_FAIL, POST_DELETE_REQUEST, POST_DELETE_SUCCESS, POST_UNLIKE_FAIL, POST_UNLIKE_REQUEST, POST_UNLIKE_SUCCESS}from '../constants/postConstants'
+      POST_ALL_FAIL, POST_ALL_REQUEST, POST_ALL_SUCCESS, POST_DELETE_FAIL, POST_DELETE_REQUEST, POST_DELETE_SUCCESS, POST_SINGLE_FAIL, POST_SINGLE_REQUEST, POST_SINGLE_SUCCESS, POST_UNLIKE_FAIL, POST_UNLIKE_REQUEST, POST_UNLIKE_SUCCESS}from '../constants/postConstants'
 
 export const addPost = (text) =>async(dispatch,getState)=>{
     try {
@@ -171,7 +171,41 @@ export const addPost = (text) =>async(dispatch,getState)=>{
         })
      }     
       
-   }  
+   }
+   
+   export const singlePost = (id) =>async(dispatch,getState)=>{
+    try {
+         
+        dispatch({type: POST_SINGLE_REQUEST})
+
+        const {userLogin:{userInfo}}=getState()
+        
+        const config = {
+            headers:{
+                 Authorization:`Bearer ${userInfo.token}`
+            }
+        }
+    
+          
+        const {data} = await axios.get(`/api/posts/${id}`,config)
+
+         dispatch({
+             type:POST_SINGLE_SUCCESS,
+             payload:data
+         })
+       } 
+       catch (error) {
+        
+        dispatch({
+            type:POST_SINGLE_FAIL,
+            payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })
+     }     
+      
+   }
       
       
    
