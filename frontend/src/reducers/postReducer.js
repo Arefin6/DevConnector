@@ -1,4 +1,4 @@
-import { ADD_POST_FAIL, ADD_POST_REQUEST, ADD_POST_SUCCESS,
+import { ADD_COMMENT_FAIL, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_POST_FAIL, ADD_POST_REQUEST, ADD_POST_SUCCESS,
   POST_ADD_LIKE_FAIL,
   POST_ADD_LIKE_REQUEST,
   POST_ADD_LIKE_RESET,
@@ -156,6 +156,32 @@ export const postCreateReducer = (state = {},action)=>{
            return state           
     }
   } 
+
+
+  export const commentAddReducer = (state = {},action)=>{
+  
+    switch(action.type){
+      
+        case ADD_COMMENT_REQUEST:
+          return{
+              loading:true,
+          }
+        case ADD_COMMENT_SUCCESS:
+           return{
+               loading:false,
+               success:true
+           } 
+        case ADD_COMMENT_FAIL:
+           return{
+               loading:false,
+               error:action.payload,
+               success:false
+           } 
+         default:
+           return state           
+    }
+  }
+
    
   
   

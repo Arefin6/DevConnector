@@ -24,10 +24,10 @@ const PostSingle = () => {
     
     return (
   <>
-   <div class="post">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
+   <div className="post">
+    <div className="container">
+      <div className="row">
+        <div className="col-md-12">
        
           <PostSingleDetails postSingle={postSingle}></PostSingleDetails>
          

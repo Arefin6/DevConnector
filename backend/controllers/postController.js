@@ -166,17 +166,20 @@ const addComment = asyncHandler(async(req,res)=>{
              
     const post = await Post.findById(req.params.id)
 
+
       if(!post){
          const error = "No Post Found"  
         return res.status(404).json(error)
          
       }
-      //check Already liked or not
+      const {comment} =req.body
+      //Create Comment
       const newComment ={
-          user:req.user.id,
+          comment:comment,
+          user:req.user._id,
           name:req.user.name,
           avatar:req.user.avatar,
-          text:req.body.text
+        
       } 
     
      post.comments.unshift(newComment) 

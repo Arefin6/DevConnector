@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Loader from '../../Loader';
 import Message from '../../Message';
 
@@ -11,18 +12,18 @@ const PostSingleDetails = ({postSingle}) => {
         {loading ? <Loader></Loader>
         : err ? <Message>{err}</Message>
         :
-        <div class="card card-body mb-3">
-            <div class="row">
-              <div class="col-md-2">
-                <a href="profile.html">
-                  <img class="rounded-circle d-none d-md-block" src={post.avatar}
+        <div className="card card-body mb-3">
+            <div className="row">
+              <div className="col-md-2">
+                <Link to={`/profile/${post.user}`}>
+                  <img className="rounded-circle d-none d-md-block" src={post.avatar}
                     alt={post.name} />
-                </a>
+                </Link>
                 <br />
-                <p class="text-center">{post.name}</p>
+                <p className="text-center">{post.name}</p>
               </div>
-              <div class="col-md-10">
-                <p class="lead">{post.text}</p>
+              <div className="col-md-10">
+                <p className="lead">{post.text}</p>
               </div>
             </div>
           </div>  
