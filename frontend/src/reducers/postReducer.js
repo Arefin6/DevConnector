@@ -133,7 +133,7 @@ export const postCreateReducer = (state = {},action)=>{
   } 
   
 
-  export const postSingleReducer = (state = {post:{}},action)=>{
+  export const postSingleReducer = (state = {post:{comments:[]}},action)=>{
   
     switch(action.type){
       

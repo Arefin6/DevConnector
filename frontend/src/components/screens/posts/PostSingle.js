@@ -2,10 +2,10 @@ import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { singlePost } from '../../../actions/postAction';
-import CommentFrom from './CommentFrom';
-import PostSingleDetails from './PostSingleDetails';
-import Comments from './Comments';
 import Message from '../../Message';
+import CommentFrom from './CommentFrom';
+import Comments from './Comments';
+import PostSingleDetails from './PostSingleDetails';
 
 const PostSingle = () => {
 
@@ -15,10 +15,12 @@ const PostSingle = () => {
  
     const postSingle = useSelector(state =>state.postSingle)
     const {post} = postSingle
+     
+  
     
     useEffect(()=>{
         dispatch(singlePost(id))
-    },[dispatch,id])
+    },[dispatch,id,singlePost])
     
     return (
   <>
@@ -30,20 +32,14 @@ const PostSingle = () => {
           <PostSingleDetails postSingle={postSingle}></PostSingleDetails>
          
           <CommentFrom></CommentFrom>
-
-          {
-            post.comments.length>0 ?
-
-            post.comments.map(comment => (
-              <Comments comments={comment}></Comments> 
-            ))
-            :(
-              <Message variant="info">No Comments Yet</Message>
-            )
-          }
+          
+          {post.comments.length === 0 && <Message variant="primary">No Comments Yet</Message>}
            
-        
-         
+           {
+            post.comments.map(comment => (
+              <Comments key = {comment._id} comment={comment}></Comments>
+            )) 
+           }
           </div>
         </div>
       </div>

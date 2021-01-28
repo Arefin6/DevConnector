@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Comments = () => {
-
+const Comments = ({comment}) => {
+  
     return (
         <>
+                
          <div class="comments">
           
           <div class="card card-body mb-3">
