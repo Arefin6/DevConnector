@@ -16,6 +16,8 @@ const PostSingle = () => {
     const postSingle = useSelector(state =>state.postSingle)
     const {post} = postSingle
      
+    const userLoggedIn = useSelector(state =>state.userLogin)
+    const {userInfo} = userLoggedIn 
   
     
     useEffect(()=>{
@@ -37,7 +39,7 @@ const PostSingle = () => {
            
            {
             post.comments.map(comment => (
-              <Comments key = {comment._id} comment={comment}></Comments>
+              <Comments key = {comment._id} postId={post._id} userInfo={userInfo} comment={comment}></Comments>
             )) 
            }
           </div>

@@ -1,4 +1,7 @@
 import { ADD_COMMENT_FAIL, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_POST_FAIL, ADD_POST_REQUEST, ADD_POST_SUCCESS,
+  DELETE_COMMENT_FAIL,
+  DELETE_COMMENT_REQUEST,
+  DELETE_COMMENT_SUCCESS,
   POST_ADD_LIKE_FAIL,
   POST_ADD_LIKE_REQUEST,
   POST_ADD_LIKE_RESET,
@@ -182,6 +185,31 @@ export const postCreateReducer = (state = {},action)=>{
     }
   }
 
+
+  export const commentDeleteReducer = (state = {},action)=>{
+  
+    switch(action.type){
+      
+        case DELETE_COMMENT_REQUEST:
+          return{
+              ...state, 
+              loading:true,
+          }
+        case DELETE_COMMENT_SUCCESS:
+           return{
+               loading:false,
+               success:true
+           } 
+        case DELETE_COMMENT_FAIL:
+           return{
+               loading:false,
+               success:false,
+               error:action.payload
+           } 
+         default:
+           return state           
+    }
+  } 
    
   
   

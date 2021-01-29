@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {ADD_COMMENT_FAIL, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_POST_FAIL, ADD_POST_REQUEST,
-     ADD_POST_SUCCESS, POST_ADD_LIKE_FAIL,
+     ADD_POST_SUCCESS, DELETE_COMMENT_FAIL, DELETE_COMMENT_REQUEST, DELETE_COMMENT_SUCCESS, POST_ADD_LIKE_FAIL,
       POST_ADD_LIKE_REQUEST, POST_ADD_LIKE_SUCCESS, 
       POST_ALL_FAIL, POST_ALL_REQUEST, POST_ALL_SUCCESS, POST_DELETE_FAIL, POST_DELETE_REQUEST, POST_DELETE_SUCCESS, POST_SINGLE_FAIL, POST_SINGLE_REQUEST, POST_SINGLE_SUCCESS, POST_UNLIKE_FAIL, POST_UNLIKE_REQUEST, POST_UNLIKE_SUCCESS}from '../constants/postConstants'
 
@@ -232,6 +232,39 @@ export const addPost = (text) =>async(dispatch,getState)=>{
         
         dispatch({
             type:ADD_COMMENT_FAIL,
+            payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })
+     }     
+      
+   }  
+
+   export const deleteComment = (id,commentId) =>async(dispatch,getState)=>{
+    try {
+         
+        dispatch({ type: DELETE_COMMENT_REQUEST})
+
+        const {userLogin:{userInfo}}=getState()
+        
+        const config = {
+            headers:{
+                 Authorization:`Bearer ${userInfo.token}`
+            }
+        }
+    
+          
+         await axios.put(`/api/posts/comment/${id}/${commentId}`,{},config)
+
+         dispatch({
+             type:DELETE_COMMENT_SUCCESS,
+         })
+       } 
+       catch (error) {
+        
+        dispatch({
+            type:DELETE_COMMENT_FAIL,
             payload:
             error.response && error.response.data.message
               ? error.response.data.message
