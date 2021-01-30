@@ -76,7 +76,7 @@ const createProfile = asyncHandler(async(req,res) =>{
     }
     else{
         res.status(500)
-        res.send({message:"something went wrong"})
+        res.json({message:"something went wrong"})
     }
 
    

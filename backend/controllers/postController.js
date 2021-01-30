@@ -168,8 +168,8 @@ const addComment = asyncHandler(async(req,res)=>{
 
 
       if(!post){
-         const error = "No Post Found"  
-        return res.status(404).json(error)
+         
+        return res.status(404).json({message:"No Post Found"})
          
       }
       const {comment} =req.body
@@ -212,13 +212,13 @@ const deleteComment = asyncHandler(async(req,res)=>{
      const comment = post.comments.find(comment => comment.id === req.params.commentId)
 
      if(!comment){
-         return res.status(404).json({commentNotFound:'Comment Not Found'})
+         return res.status(404).json({message:'Comment Not Found'})
      }
 
      //check User
 
      if(comment.user.toString() !== req.user.id){
-        return res.status(401).json({AuthError:"Un Authorized Access"})
+        return res.status(401).json({message:"Un Authorized Access"})
      }
     
      post.comments = post.comments.filter(comment => comment.id !== req.params.commentId )
