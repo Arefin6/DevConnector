@@ -170,7 +170,7 @@ const EditProfileScreen = () => {
                             name="githubUsername"
                                value={githubUsername}
                                onChange={handleOnChange}
-                            className="form-control form-control-lg" placeholder="githubUsername Username"  />
+                            className="form-control form-control-lg" placeholder="github Username"  />
                             <small className="form-text text-muted">If you want your latest repos and a githubUsername link, include your username</small>
                             </div>
                             <div className="form-group">

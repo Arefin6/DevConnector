@@ -45,8 +45,10 @@ const DetailsScreen = () => {
               <ProfileAbout portfolio={portfolio}></ProfileAbout>
              
               <ProfileCred portfolio={portfolio}></ProfileCred>
-              
-              <ProfileGithub></ProfileGithub>
+              {
+               portfolio.githubUsername && <ProfileGithub userName={portfolio.githubUsername}></ProfileGithub>
+              }
+            
              
            </div>
          </div>

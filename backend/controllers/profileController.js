@@ -304,6 +304,10 @@ const deleteEducation = asyncHandler(async(req,res) =>{
     }
   
 })
+
+    
+    
+
  
 export {testRoute,getCurrentProfile,createProfile,updateProfile,getAllProfile,getProfileByUserId,updateProfileToAddExperience
 ,updateProfileToAddEducation,deleteExperience,deleteEducation}
