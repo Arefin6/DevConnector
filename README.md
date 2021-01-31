@@ -12,6 +12,7 @@ user Authentication
 profile
 education and Exprenice section(Delete Funtionality)
 Full profile
+user have avatar useing gravater
 Descusiion 
 where user post and comment(delete post and comment)
 Update profile
