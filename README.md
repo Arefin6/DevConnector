@@ -2,7 +2,7 @@ Dev Connector
 
 Live: https://gentle-tundra-25039.herokuapp.com/
 
-A full-stack Social Media  For Developers where you can Create Profile See Developer Profile. Post Read Post and Do Comment.
+A full-stack Social Media  For Developers where you can Create Profile See Developer Profile. Create Read and Delete Post, Comment On A Post.
 
 Features:
 
