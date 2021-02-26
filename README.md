@@ -1,19 +1,39 @@
-# DevConnector
-Is A Dummy Full  Socail Media WebSite For Developers.
-Live Site link: https://gentle-tundra-25039.herokuapp.com/
+Dev Connector
 
-It is A Full Stack site useing mern stak
+Live: https://gentle-tundra-25039.herokuapp.com/
 
-#Technology used:
-React,Redux,Mongoose,Bootstrap,Node,Express etc
+A full-stack Social Media  For Developers where you can Create Profile See Developer Profile. Post Read Post and Do Comment.
 
-#Features
-user Authentication
-profile
-education and Exprenice section(Delete Funtionality)
-Full profile
-user have avatar useing gravater
-Descusiion 
-where user post and comment(delete post and comment)
-Update profile
-user lastest github repos if gives the username
+Features:
+
+○ Create And Update Developer Profile
+
+○ Sign Up and Login Useing JWT
+
+○ Avatar Useing Gravater
+
+○ See Latest Github Repos
+
+○ Create and Delete Post
+
+○ Create and Delete Comment
+
+Technology:
+
+○ React
+
+○ Redux
+
+○ React Router
+
+○ ReactBootstrap
+
+○ Node.js
+
+○ MongoDB
+
+○ JWt Authentication
+
+○ Github APi
+
+○ Heroku
