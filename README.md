@@ -8,11 +8,11 @@ A full-stack Social Media For Developers where you can Create Profile See Develo
 
 <ul>
   <li>Create A Profile</li>
-  <li>Updat Profile</li>
+  <li>Update Profile</li>
   <li>Jwt Authentication</li>
   <li>Create And Delete Post</li>
   <li>Comment On A Post</li>
-  <li>See Laesat Repos Frpm Github</li>
+  <li>See Leatest Repos Frpm Github</li>
  
 </ul>
 
